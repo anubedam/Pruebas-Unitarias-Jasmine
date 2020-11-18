@@ -1,0 +1,14 @@
+{
+  "name": "pruebas-unitarias-jasmine",
+  "version": "1.0.0",
+  "description": "Pruebas unitarias Javascript con Jasmine",
+  "main": "main.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "author": "Antonio Úbeda Montero",
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine": "^3.6.3"
+  }
+}

@@ -1,0 +1,85 @@
+PRUEBAS EN JAVASCRIPT CON JASMINE
+=================================
+
+***************************************************************************
+                            INSTALACIÓN
+***************************************************************************
+
+1.- Primeramente creo el proyecto: npm init.
+2.- Instalar con npm: npm install --save-dev jasmine
+3.- Inicializar jasmine: npx jasmine init. Se crea automáticamente un directorio
+    spec y un json con la configuración de Jasmine.
+
+    Podemos editar el contenido del fichero jasmine.json teniendo en cuenta que:
+
+    spec_dir: Directorio de trabajo. Prefijo para los ficheros
+       de spec y helpers.
+    spec_files: Array de rutas relativas al spec_dir para 
+       incluir o excluir (en este último caso con !).
+    helpers: Array de rutas relativas al spec_dir para incluir
+       antes de los specs.
+    stopSpecOnExpectationFailure:
+       Para la ejecución de un spect después del primer fallo.
+    random: Ejecuta los spec en orden semi aleatorio 
+
+4.- Para correr los test: npx jasmine ó jasmine spec/appSpec.js
+    (podemos especificar ciertos patrones para seleccionar varios).
+
+5.- En package.json metemos la siguiente línea para correr los test:
+    "scripts": { "test": "jasmine" }
+
+Se pueden ejecutar los comandos de jasmine con npx jasmine ... commands
+Ej: para generar ejemplos: npx jasmine examples
+
+***************************************************************************
+                            CONCEPTOS
+***************************************************************************
+
+- Spec: Cada uno de los ficheros de pruebas.
+- Describe (suites): Define una agrupación de test que están relacionados.
+      Podemos tener describes dentro de otros describes.
+
+      Podemos deshabilitar una suite con xdescribe y, por consiguiente, 
+      los test que contienen aparecerán como pendientes.
+
+- it: Identifica cada uno de los casos de pruebas.
+      Puede contener uno varios expect con el resultado que esperamos obtener.
+
+      Podemos deshabilitar un test con xit. Aparecerán como pendientes.
+      Para centrarnos sólo en un test, ponemos fit (focus it).
+
+- expect: Comparación entre lo que se ha obtenido y lo que se espera obtener.
+      Si todos los expect pasan, el resultado de las pruebas es correcto.
+- matcher: Son expresiones predefinidas que se utilizan para realizar las
+      comparaciones entre el valor obtenido y el esperado.
+   (Si se pone delante un .not. se niega la aserción).
+
+***************************************************************************
+                  GANCHOS DONDE EJECUTAR CÓDIGO 
+***************************************************************************
+
+- Tenemos funciones que ejecutan código en algunos puntos concretos:
+  * beforeEach: 
+    Se ejecuta antes de cada caso de prueba contenido en ese describe. 
+  * afterEach:
+    Se ejecuta después de cada caso de prueba contenido en ese describe.
+  * beforeAll:
+    Se ejecuta antes de todos los casos de prueba contenidos en ese describe.
+  * afterAll:
+    Se ejecuta antes de todos los casos de prueba contenidos en ese describe.
+
+***************************************************************************
+                              ESPÍAS 
+***************************************************************************
+
+Espías (spy): 
+   Rastrea la llamada a una función y los argumentos con los que se le llama.
+
+   Un espía solo existe en el bloque describe o en el it que está definido,
+   y se eliminará después de cada especificación. Hay emparejadores especiales
+   para interactuar con espías. 
+
+   - toHaveBeenCalled: Pasa si el espía fue llamado.
+   - toHaveBeenCalledTimes: Pasa si el espía fue llamado x veces.
+   - toHaveBeenCalledWith: Pasa si se le ha llamado con esa lista de parámetros
+       en alguna de sus llamadas.
